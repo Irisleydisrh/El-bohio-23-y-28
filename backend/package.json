@@ -1,0 +1,53 @@
+{
+  "name": "el-bohio-backend",
+  "version": "1.0.0",
+  "description": "Backend para El Bohío 23 y 28 - Screaming Architecture + TypeORM",
+  "main": "dist/entrypoint.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/entrypoint.ts",
+    "build": "tsc",
+    "start": "node dist/presentation/server.js",
+    "lint": "eslint src/",
+    "typeorm": "tsx node_modules/typeorm/cli.js -d src/config/dataSource.js",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "db:sync": "npm run typeorm -- schema:sync",
+    "db:drop": "npm run typeorm -- schema:drop",
+    "setup": "tsx scripts/setup.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "load-test": "node load-tests/node-load-test.js",
+    "load-test:k6": "k6 run load-tests/smoke.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^8.3.2",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.13.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20",
+    "uuid": "^11.0.0",
+    "yaml": "^2.6.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.16.5",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
